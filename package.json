@@ -1,0 +1,13 @@
+{
+  "name": "zcash-halving-twit-bot",
+  "version": "1.0.0",
+  "description": "twitter bot for zcash halving",
+  "main": "index.js",
+  "author": "swoppy",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "twit": "^2.2.11"
+  }
+}
