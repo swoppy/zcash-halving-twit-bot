@@ -1,1 +1,1 @@
-A Twitter bot https://twitter.com/zechalving
+A Twitter bot build with nodejs
