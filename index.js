@@ -51,7 +51,7 @@ function upload() {
   // Playwright: go to a website and take a screenshot of a specific element then save to path as .png
   (async () => {
     try {
-      const browser = await webkit.launch();
+      const browser = await webkit.launch({headless: true, args: ['--no-sandbox']});
       const page = await browser.newPage();
       await page.goto(text.siteLink);
       await page.waitForSelector('#countdownTimer')
