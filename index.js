@@ -11,18 +11,6 @@ const T = new Twit({
   access_token_secret:  process.env.TWITTER_ACCESS_TOKEN_SECRET,
 });
 
-// Playwright: go to a website and take a screenshot of a specific element then save to path as .png
-const path = 'src/img/site.png';
-(async () => {
-  const browser = await webkit.launch();
-  const page = await browser.newPage();
-  await page.goto(text.siteLink);
-  await page.waitForSelector('#countdownTimer')
-  const element = await page.$('#countdownTimer');
-  await element.screenshot({ path: path });
-  await browser.close();
-})();
-
 // callback function when statuses/update is successful
 const tweetedCb = (err, data, response) => {
   if (err) {
@@ -44,6 +32,17 @@ const uploadedCb = (err, data, response) => {
 };
 
 const upload = () => {
+  // Playwright: go to a website and take a screenshot of a specific element then save to path as .png
+  const path = 'src/img/site.png';
+  (async () => {
+    const browser = await webkit.launch();
+    const page = await browser.newPage();
+    await page.goto(text.siteLink);
+    await page.waitForSelector('#countdownTimer')
+    const element = await page.$('#countdownTimer');
+    await element.screenshot({ path: path });
+    await browser.close();
+  })();
   const b64Media = fs.readFileSync(path, { encoding: 'base64' }); 
   T.post('media/upload', { media_data: b64Media }, uploadedCb);
 }
