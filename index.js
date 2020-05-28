@@ -1,7 +1,7 @@
 require('dotenv').config();
 const Twit = require('twit');
 const text = require('./src/text');
-const { webkit } = require('playwright');
+const puppeteer = require('puppeteer');
 const fs = require('fs');
 const phrases = require('./src/phrases').phrases;
 
@@ -48,10 +48,12 @@ function upload() {
   if (fs.existsSync(path)) {
     fs.unlinkSync(path)
   }
-  // Playwright: go to a website and take a screenshot of a specific element then save to path as .png
+  /* Puppeteer: go to a website and take a screenshot of a specific element then save to path as .png
+  * args: ['--no-sandbox', '--disable-setuid-sandbox'] is a heroku specific config to stop whinning
+  */
   (async () => {
     try {
-      const browser = await webkit.launch({headless: true, args: ['--no-sandbox']});
+      const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
       const page = await browser.newPage();
       await page.goto(text.siteLink);
       await page.waitForSelector('#countdownTimer')
