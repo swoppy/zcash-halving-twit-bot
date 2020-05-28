@@ -19,8 +19,7 @@ const T = new Twit({
 */
 
 upload();
-setInterval(upload, 1000*120) // test
-// setInterval(upload, 86400000); //24 hours
+setInterval(upload, 86400000); //24 hours
 
 // callback function when statuses/update is successful
 function tweetedCb(err, data, response) {
@@ -68,6 +67,5 @@ function upload() {
     catch(e) {
       console.log(e);
     }
-    
   })();
 }
