@@ -54,4 +54,5 @@ const upload = () => {
 *   Run upload() once then run the suceeding process interval'd
 */
 upload();
-setInterval(upload, 129600000); //1.5 days
+setInterval(upload, 1000*120) // test
+// setInterval(upload, 86400000); //24 hours
